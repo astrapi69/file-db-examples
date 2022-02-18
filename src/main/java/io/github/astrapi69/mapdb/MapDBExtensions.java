@@ -22,8 +22,17 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69;
+package io.github.astrapi69.mapdb;
+import org.mapdb.*;
 
-public class InitialTemplate
+import java.util.concurrent.ConcurrentMap;
+
+public class MapDBExtensions
 {
+    public static void testMapDB() {
+        DB db = DBMaker.fileDB("file.db").make();
+        ConcurrentMap map = db.hashMap("map").createOrOpen();
+        map.put("something", "here");
+        db.close();
+    }
 }

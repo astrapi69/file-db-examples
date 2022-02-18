@@ -232,6 +232,7 @@ check.dependsOn jacocoTestReport
 dependencies {
     compileOnly("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("org.projectlombok:lombok:$lombokVersion")
+    implementation("org.mapdb:mapdb:$mapdbVersion")
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
     testImplementation("io.github.astrapi69:silly-io:$sillyIoVersion")
@@ -242,4 +243,5 @@ dependencies {
     testImplementation("org.meanbean:meanbean:$meanbeanVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+    implementation("io.jsondb:jsondb-core:1.0.115-j8")
 }
