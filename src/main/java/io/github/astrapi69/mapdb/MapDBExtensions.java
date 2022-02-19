@@ -25,14 +25,25 @@
 package io.github.astrapi69.mapdb;
 import org.mapdb.*;
 
+import java.util.NavigableSet;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentNavigableMap;
 
 public class MapDBExtensions
 {
     public static void testMapDB() {
-        DB db = DBMaker.fileDB("file.db").make();
+        DB db = DBMaker.fileDB("src/main/resources/mapdb/file.db").make();
         ConcurrentMap map = db.hashMap("map").createOrOpen();
         map.put("something", "here");
+        ConcurrentNavigableMap<Integer,String> navigableMap = db
+                .treeMap("navigableMap", Serializer.INTEGER, Serializer.STRING)
+                .createOrOpen();
+        navigableMap.put(1,"one");
+        navigableMap.put(2,"two");
+
+        db.commit();  //persist changes into disk
+
+        navigableMap.put(3,"three");
         db.close();
     }
 }
