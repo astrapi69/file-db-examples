@@ -1,17 +1,31 @@
 package io.github.astrapi69.h2;
 
-import org.h2.tools.Server;
-
 import java.sql.SQLException;
 
-public class H2Launcher {
+import org.h2.tools.Server;
 
-    private static void startDB() throws SQLException {
-        newServer().start();
+public class H2Launcher
+{
+
+    public static void start(Server server) throws SQLException
+    {
+        server.start();
     }
 
-    public static Server newServer() throws SQLException {
-        return Server.createTcpServer("-tcpPort", "9092", "-tcpAllowOthers", "-ifNotExists");
+
+    public static void stop(Server server) throws SQLException
+    {
+        server.stop();
+    }
+
+    public static Server newServer() throws SQLException
+    {
+        return newTcpServer("-tcpPort", "9092", "-tcpAllowOthers", "-ifNotExists");
+    }
+
+    public static Server newTcpServer(String... args) throws SQLException
+    {
+        return Server.createTcpServer(args);
     }
 
 }
